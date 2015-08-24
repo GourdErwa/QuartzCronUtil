@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="css/chosen.min.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
+
+<style>
+    body {
+        width: 50%;
+        margin: 0 auto;
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+
+    input[type=number] {
+        height: 25px;
+        width: 50px;
+    }
+</style>
+</head>
+<body>
+
+<div>
+
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#second" aria-controls="second" role="tab" data-toggle="tab">秒</a>
+            </li>
+            <li role="presentation">
+                <a href="#minute" aria-controls="minute" role="tab" data-toggle="tab">分钟</a></li>
+            <li role="presentation">
+                <a href="#hour" aria-controls="hour" role="tab" data-toggle="tab">小时</a>
+            </li>
+            <li role="presentation">
+                <a href="#day" aria-controls="day" role="tab" data-toggle="tab">日</a>
+            </li>
+            <li role="presentation">
+                <a href="#month" aria-controls="month" role="tab" data-toggle="tab">月</a>
+            </li>
+            <li role="presentation">
+                <a href="#week" aria-controls="week" role="tab" data-toggle="tab">周</a>
+            </li>
+            <li role="presentation">
+                <a href="#year" aria-controls="year" role="tab" data-toggle="tab">年</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!--秒-->
+            <div role="tabpanel" class="tab-pane active" id="second">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="secondType" value="1" checked>
+                        每秒 允许的通配符[, - * /]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="secondType" value="2">
+                        周期从
+                        <input type="number" id="secondType2Start" value="">
+                        -
+                        <input type="number" id="secondType2End" value="">
+                        秒
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="secondType" value="3">
+                        从
+                        <input type="number" id="secondType3Start" value="">
+                        秒开始,每
+                        <input type="number" id="secondType3End" value="">
+                        秒执行一次
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="secondType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="secondType4Values" data-placeholder="选择指定的秒..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+            </div>
+
+            <!--分钟-->
+            <div role="tabpanel" class="tab-pane" id="minute">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="minuteType" value="1" checked>
+                        每分钟 允许的通配符[, - * /]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="minuteType" value="2">
+                        周期从
+                        <input type="number" id="minuteType2Start" value="">
+                        -
+                        <input type="number" id="minuteType2End" value="">
+                        分钟
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="minuteType" value="3">
+                        从
+                        <input type="number" id="minuteType3Start" value="">
+                        分钟开始,每
+                        <input type="number" id="minuteType3End" value="">
+                        分钟执行一次
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="minuteType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="minuteType4Values" data-placeholder="选择指定的分钟..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+            </div>
+
+            <!--小时-->
+            <div role="tabpanel" class="tab-pane" id="hour">
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="hourType" value="1" checked>
+                        每小时 允许的通配符[, - * /]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="hourType" value="2">
+                        周期从
+                        <input type="number" id="hourType2Start" value="">
+                        -
+                        <input type="number" id="hourType2End" value="">
+                        小时
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="hourType" value="3">
+                        从
+                        <input type="number" id="hourType3Start" value="">
+                        时开始,每
+                        <input type="number" id="hourType3End" value="">
+                        小时执行一次
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="hourType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="hourType4Values" data-placeholder="选择指定的小时..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="day">...</div>
+            <div role="tabpanel" class="tab-pane" id="month">...</div>
+            <div role="tabpanel" class="tab-pane" id="week">...</div>
+            <div role="tabpanel" class="tab-pane" id="year">...</div>
+
+        </div>
+
+    </div>
+    <hr>
+
+</div>
+
+</body>
+</html>
+<script>
+
+    var $secondType4Values = $("#secondType4Values"),
+            $minuteType4Values = $("#minuteType4Values"),
+            $hourType4Values = $("#hourType4Values");
+
+    /**
+     * 初始化秒/分钟指定具体数值下拉框
+     */
+    function initSecondMinuteChosen() {
+
+        for (var i = 1; i < 61; i++) {
+            var v = "<option value='" + i + "'>" + i + "</option>";
+            $secondType4Values.append(v);
+            $minuteType4Values.append(v);
+        }
+
+        for (var i = 0; i < 24; i++) {
+            var v = "<option value='" + i + "'>" + i + "</option>";
+            $hourType4Values.append(v);
+        }
+
+        $secondType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+
+        $minuteType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+
+        $hourType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+    }
+
+    $(function () {
+        initSecondMinuteChosen();
+
+    });
+</script>
