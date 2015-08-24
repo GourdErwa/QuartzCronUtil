@@ -2,7 +2,7 @@
 <html lang="en">
 <link>
 <meta charset="UTF-8">
-<title></title>
+<title>Quartz Cron 生成工具</title>
 <link rel="stylesheet" href="css/chosen.min.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/jquery-1.11.3.js"></script>
@@ -185,10 +185,218 @@
                 </div>
 
             </div>
-            <div role="tabpanel" class="tab-pane" id="day">...</div>
-            <div role="tabpanel" class="tab-pane" id="month">...</div>
-            <div role="tabpanel" class="tab-pane" id="week">...</div>
-            <div role="tabpanel" class="tab-pane" id="year">...</div>
+
+
+            <!--日-->
+            <div role="tabpanel" class="tab-pane" id="day">
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="1" checked>
+                        每日 允许的通配符[, - * / L W]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="2">
+                        周期从
+                        <input type="number" id="dayType2Start" value="">
+                        -
+                        <input type="number" id="dayType2End" value="">
+                        日
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="3">
+                        从
+                        <input type="number" id="dayType3Start" value="">
+                        日开始,每
+                        <input type="number" id="dayType3End" value="">
+                        日执行一次
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="dayType4Values" data-placeholder="选择指定的日..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="5">
+                        不指定
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="6">
+                        每月
+                        <input type="number" id="dayType6" value="">
+                        号最近的那个工作日
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="7">
+                        本月最后一天
+                    </label>
+                </div>
+
+            </div>
+
+            <!--月-->
+            <div role="tabpanel" class="tab-pane" id="month">
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="monthType" value="1" checked>
+                        每月 允许的通配符[, - * /]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="monthType" value="2">
+                        周期从
+                        <input type="number" id="monthType2Start" value="">
+                        -
+                        <input type="number" id="monthType2End" value="">
+                        月
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="monthType" value="3">
+                        从
+                        <input type="number" id="monthType3Start" value="">
+                        月开始,每
+                        <input type="number" id="monthType3End" value="">
+                        月执行一次
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="monthType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="monthType4Values" data-placeholder="选择指定的月..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="monthType" value="5">
+                        不指定
+                    </label>
+                </div>
+
+
+            </div>
+
+
+            <!--周-->
+            <div role="tabpanel" class="tab-pane" id="week">
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="1" checked>
+                        每周 允许的通配符[, - * / L #]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="2">
+                        周期从
+                        <input type="number" id="weekType2Start" value="">
+                        -
+                        <input type="number" id="weekType2End" value="">
+                        周
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="3">
+                        第
+                        <input type="number" id="weekType3Start" value="">
+                        周 的星期
+                        <input type="number" id="weekType3End" value="">
+
+                    </label>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="4">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="weekType4Values" data-placeholder="选择指定的周..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="5">
+                        不指定
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="weekType" value="6">
+                        本月最后一个星期
+                        <input type="number" id="weekType6" value="">
+
+                    </label>
+                </div>
+
+
+            </div>
+
+
+            <!--年-->
+            <div role="tabpanel" class="tab-pane" id="year">
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="yearType" value="1" checked>
+                        每年 允许的通配符[, - * /]
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="yearType" value="5">
+                        不指定
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="yearType" value="2">
+                        周期从
+                        <input type="number" id="yearType2Start" value="">
+                        -
+                        <input type="number" id="yearType2End" value="">
+                        年
+                    </label>
+                </div>
+
+            </div>
 
         </div>
 
@@ -203,7 +411,10 @@
 
     var $secondType4Values = $("#secondType4Values"),
             $minuteType4Values = $("#minuteType4Values"),
-            $hourType4Values = $("#hourType4Values");
+            $hourType4Values = $("#hourType4Values"),
+            $dayType4Values = $("#dayType4Values"),
+            $monthType4Values = $("#monthType4Values"),
+            $weekType4Values = $("#weekType4Values");
 
     /**
      * 初始化秒/分钟指定具体数值下拉框
@@ -221,6 +432,18 @@
             $hourType4Values.append(v);
         }
 
+        for (var i = 1; i < 32; i++) {
+            var v = "<option value='" + i + "'>" + i + "</option>";
+            $dayType4Values.append(v);
+            $monthType4Values.append(v);
+        }
+
+        for (var i = 1; i < 8; i++) {
+            var v = "<option value='" + i + "'>" + i + "</option>";
+            $weekType4Values.append(v);
+        }
+
+
         $secondType4Values.chosen({
             no_results_text: "未找到此选项",
             width: "42%"
@@ -232,6 +455,18 @@
         });
 
         $hourType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+        $dayType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+        $monthType4Values.chosen({
+            no_results_text: "未找到此选项",
+            width: "42%"
+        });
+        $weekType4Values.chosen({
             no_results_text: "未找到此选项",
             width: "42%"
         });
