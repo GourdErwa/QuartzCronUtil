@@ -2,7 +2,7 @@
 <html lang="en">
 <link>
 <meta charset="UTF-8">
-<title>Quartz Cron 生成工具</title>
+<title>Quartz CronTrigger Util</title>
 <link rel="stylesheet" href="css/chosen.min.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/jquery-1.11.3.js"></script>
@@ -13,7 +13,7 @@
     body {
         width: 50%;
         margin: 0 auto;
-        padding-top: 40px;
+        padding-top: 20px;
         padding-bottom: 20px;
     }
 
@@ -21,12 +21,16 @@
         height: 25px;
         width: 50px;
     }
+
 </style>
 </head>
 <body>
 
 <div>
-
+    <div style="text-align: center;">
+        <h3>Quartz CronTrigger Util</h3>
+        <br>
+    </div>
     <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -67,7 +71,7 @@
                     <label>
                         <input type="radio" name="secondType" value="Cyclic">
                         周期从
-                        <input type="number" id="secondTypeCyclic_1" value="">
+                        <input type="number" maxlength="2" id="secondTypeCyclic_1" value="">
                         -
                         <input type="number" id="secondTypeCyclic_2" value="">
                         秒
@@ -397,77 +401,27 @@
     </div>
     <hr>
 
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">结果</h3>
+        </div>
+        <div class="panel-body">
+
+            <form class="form-inline">
+                <!--<div class="form-group">
+                    <label class="sr-only">结果</label>
+                    <p class="form-control-static">结果</p>
+                </div>-->
+                <div class="form-group">
+                    <label for="result" class="sr-only">Password</label>
+                    <input type="text" class="form-control" style="width: 500px;" id="result" placeholder="结果">
+                </div>
+                <button type="button" class="btn btn-default">反解析</button>
+            </form>
+
+        </div>
+    </div>
 </div>
 
 </body>
 </html>
-<script>
-
-    var $secondType4Values = $("#secondType4Values"),
-            $minuteType4Values = $("#minuteType4Values"),
-            $hourType4Values = $("#hourType4Values"),
-            $dayType4Values = $("#dayType4Values"),
-            $monthType4Values = $("#monthType4Values"),
-            $weekType4Values = $("#weekType4Values");
-
-    /**
-     * 初始化秒/分钟指定具体数值下拉框
-     */
-    function initSecondMinuteChosen() {
-
-        for (var i = 1; i < 61; i++) {
-            var v = "<option value='" + i + "'>" + i + "</option>";
-            $secondType4Values.append(v);
-            $minuteType4Values.append(v);
-        }
-
-        for (var i = 0; i < 24; i++) {
-            var v = "<option value='" + i + "'>" + i + "</option>";
-            $hourType4Values.append(v);
-        }
-
-        for (var i = 1; i < 32; i++) {
-            var v = "<option value='" + i + "'>" + i + "</option>";
-            $dayType4Values.append(v);
-            $monthType4Values.append(v);
-        }
-
-        for (var i = 1; i < 8; i++) {
-            var v = "<option value='" + i + "'>" + i + "</option>";
-            $weekType4Values.append(v);
-        }
-
-
-        $secondType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-
-        $minuteType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-
-        $hourType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-        $dayType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-        $monthType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-        $weekType4Values.chosen({
-            no_results_text: "未找到此选项",
-            width: "42%"
-        });
-    }
-
-    $(function () {
-        initSecondMinuteChosen();
-
-    });
-</script>

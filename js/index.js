@@ -31,7 +31,9 @@ var Type = {
         "get": function (name) {
             var id_1 = name + this.name + "_1";
             var id_2 = name + this.name + "_2";
-            return $("#" + id_1).val() + this.keyword + $("#" + id_2).val();
+            var val1 = $("#" + id_1).val();
+            var val2 = $("#" + id_2).val();
+            return (val1 && val2) && (val1 + this.keyword + val2);
         }
     },
     /**
@@ -46,7 +48,9 @@ var Type = {
         "get": function (name) {
             var id_1 = name + this.name + "_1";
             var id_2 = name + this.name + "_2";
-            return $("#" + id_1).val() + this.keyword + $("#" + id_2).val();
+            var val1 = $("#" + id_1).val();
+            var val2 = $("#" + id_2).val();
+            return (val1 && val2) && (val1 + this.keyword + val2);
         }
     },
     /**
@@ -60,7 +64,8 @@ var Type = {
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
-            return $("#" + id_1).val();
+            var val1 = $("#" + id_1).val();
+            return val1 || undefined;
         }
     },
     /**
@@ -86,7 +91,8 @@ var Type = {
 
         },
         "get": function (name) {
-            return $("#" + name + this.name + "_1").val() + "L";
+            var val = $("#" + name + this.name + "_1").val();
+            return val && (val + "L");
         }
     },
     /**
@@ -99,7 +105,7 @@ var Type = {
 
         },
         "get": function (name) {
-            return $("#" + name + this.name + "_1").val() + "W";
+            return "W";
         }
     },
     /**
@@ -114,7 +120,9 @@ var Type = {
         "get": function (name) {
             var id_1 = name + this.name + "_1";
             var id_2 = name + this.name + "_2";
-            return $("#" + id_1).val() + this.keyword + $("#" + id_2).val();
+            var val1 = $("#" + id_1).val();
+            var val2 = $("#" + id_2).val();
+            return (val1 && val2) && (val1 + this.keyword + val2);
         }
     },
     /**
@@ -128,90 +136,119 @@ var Type = {
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
-            return $("#" + id_1).val() + this.keyword;
+            var val = $("#" + id_1).val();
+            return val && (val + this.keyword);
         }
     }
 };
 
 
-var TimeObject = {
+var TimeObject = [
 
-    "second": {
+    {
         radioName: "secondType",
         min: 0,
-        max: 59,
-        types: [Type.All, Type.Cyclic, Type.Interval, Type.Assigned]
+        max: 59
     },
-    "minute": {
+    {
         radioName: "minuteType",
         min: 0,
-        max: 59,
-        types: [Type.All, Type.Cyclic, Type.Interval, Type.Assigned]
+        max: 59
     },
-    "hour": {
+    {
         radioName: "hourType",
         min: 0,
-        max: 23,
-        types: [Type.All, Type.Cyclic, Type.Interval, Type.Assigned]
+        max: 23
     },
-    "day": {
+    {
         radioName: "dayType",
         min: 1,
-        max: 31,
-        types: [Type.All, Type.Cyclic, Type.Interval, Type.Assigned, Type.NotAssigned, Type.RecentDays, Type.LastDayOfMonth]
+        max: 31
     },
-    "month": {
+    {
         radioName: "monthType",
         min: 1,
-        max: 12,
-        types: [Type.All, Type.Cyclic, Type.Interval, Type.Assigned, Type.NotAssigned]
+        max: 12
     },
-    "week": {
+    {
         radioName: "weekType",
         min: 1,
-        max: 7,
-        types: [Type.All, Type.Cyclic, Type.Assigned, Type.NotAssigned, Type.WeeksOfWeek, Type.LastWeekOfMonth]
+        max: 7
     },
-    "year": {
+    {
         radioName: "yearType",
         min: 2015,
-        max: 2299,
-        types: [Type.All, Type.Cyclic, Type.NotAssigned]
+        max: 2299
     }
-};
+];
 
+/**
+ * @param name 单选框按钮 name
+ * @returns {String}
+ */
 var getChecked = function (name) {
     return $("input[type=radio][name='" + name + "']:checked").val();
 };
 
+/**
+ * @param name 单选框按钮 name
+ * @returns {String}
+ */
 var setChecked = function (name, value) {
     $("input[type=radio][name='" + name + "'][value='" + value + "']").attr("checked", true);
 };
 
 
+var second, minute, hour, day, month, week, year;
+
 //init
 $(function () {
 
-    for (var i in TimeObject) {
-        var timeObject = TimeObject[i];
-        var radioName = timeObject.radioName;
-        var min = timeObject.min;
-        var max = timeObject.max;
-        var types = timeObject.types;
-        types.forEach(function (v) {
-            if (v.name === Type.Assigned.name) {
-                var id = radioName + Type.Assigned.name + "_1";
-                var $currChosen = $("#" + id);
-                for (; min <= max; min++) {
-                    var option = "<option value='" + min + "'>" + min + "</option>";
-                    $currChosen.append(option);
-                }
-                $currChosen.chosen({
-                    no_results_text: "未找到此选项",
-                    width: "42%"
-                });
-                return false;
+    var $result = $("#result");
+
+    TimeObject.forEach(function (v) {
+        var radioName = v.radioName;
+        var min = v.min;
+        var max = v.max;
+        var id = radioName + Type.Assigned.name + "_1";
+        var $currChosen = $("#" + id);
+        if ($currChosen) {
+            for (; min <= max; min++) {
+                var option = "<option value='" + min + "'>" + min + "</option>";
+                $currChosen.append(option);
             }
+            $currChosen.change(function () {
+                reset();
+            });
+            $currChosen.chosen({
+                no_results_text: "未找到此选项",
+                width: "42%"
+            });
+        }
+    });
+
+    var $tabContentInput = $(".tab-content");
+
+    $tabContentInput.find("input[type=radio]").change(function () {
+        reset();
+    });
+    $tabContentInput.find("input[type=number]").keyup(function () {
+        reset();
+    });
+
+    var reset = function () {
+        var r = '';
+        TimeObject.forEach(function (v) {
+            var radioName = v.radioName;
+            var value = Type[getChecked(radioName)].get(radioName);
+            value = value || "未配置";
+            r += value + " ";
         });
-    }
+
+        if (r) {
+            $result.val(r.trim());
+        }
+    };
+
+    reset();
 });
