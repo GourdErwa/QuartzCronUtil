@@ -126,7 +126,7 @@ var Type = {
             var b = value[value.length - 1] === this.keyword;
             if (b) {
                 setChecked(name, this.name);
-                $("#" + name + this.name + "_1").val(value.substring(0, value.length - 2));
+                $("#" + name + this.name + "_1").val(value.substring(0, value.length - 1));
             }
             return b;
         },
@@ -191,7 +191,7 @@ var Type = {
             var b = length > 1 && value[length - 1] === this.keyword;
             if (b) {
                 setChecked(name, this.name);
-                $("#" + name + this.name + "_1").val(value.substring(0, length - 2));
+                $("#" + name + this.name + "_1").val(value.substring(0, length - 1));
             }
             return b;
         },
