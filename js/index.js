@@ -4,7 +4,7 @@
 
 
 /**
- * 可配置的数据类型内容
+ * 可配置的数据类型内容封装
  */
 var Type = {
 
@@ -230,7 +230,7 @@ var Type = {
 };
 
 /**
- * @type {*[]} 时-年对象
+ * @type {*[]} 秒-年对象
  */
 var TimeObject = [
 
@@ -271,6 +271,9 @@ var TimeObject = [
     }
 ];
 
+/**
+ * @type {*[]} 周英文描述正则-数字描述
+ */
 var WEEK_DESCRIBE = [
     {
         RegExp: new RegExp("MON", "g"),
@@ -319,7 +322,7 @@ $(function () {
     var $result = $("#result");
 
     /**
-     * 重置 cron 串
+     * 重置 cron 串内容
      */
     var reset = function () {
         var r = '';
@@ -334,7 +337,6 @@ $(function () {
             $result.val(r.trim());
         }
 
-        console.log("22")
     };
 
     /**
