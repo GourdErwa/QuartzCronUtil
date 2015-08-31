@@ -63,7 +63,7 @@
             <div role="tabpanel" class="tab-pane active" id="second">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="secondType" value="All" checked>
+                        <input type="radio" name="secondType" value="All" checked="checked">
                         每秒 允许的通配符[, - * /]
                     </label>
                 </div>
@@ -106,7 +106,7 @@
             <div role="tabpanel" class="tab-pane" id="minute">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="minuteType" value="All" checked>
+                        <input type="radio" name="minuteType" value="All" checked="checked">
                         每分钟 允许的通配符[, - * /]
                     </label>
                 </div>
@@ -150,7 +150,7 @@
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="hourType" value="All" checked>
+                        <input type="radio" name="hourType" value="All" checked="checked">
                         每小时 允许的通配符[, - * /]
                     </label>
                 </div>
@@ -196,7 +196,7 @@
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="dayType" value="All" checked>
+                        <input type="radio" name="dayType" value="All" checked="checked">
                         每日 允许的通配符[, - * / L W]
                     </label>
                 </div>
@@ -255,7 +255,12 @@
                         本月最后一天
                     </label>
                 </div>
-
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="dayType" value="LastDayOfMonthRecentDays">
+                        本月最后一个工作日
+                    </label>
+                </div>
             </div>
 
 
@@ -263,7 +268,7 @@
             <div role="tabpanel" class="tab-pane" id="month">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="monthType" value="All" checked>
+                        <input type="radio" name="monthType" value="All" checked="checked">
                         每月 允许的通配符[, - * /]
                     </label>
                 </div>
@@ -314,7 +319,7 @@
             <div role="tabpanel" class="tab-pane" id="week">
                 <div class="radio">
                     <label>
-                        <input type="radio" name="weekType" value="All" checked>
+                        <input type="radio" name="weekType" value="All" checked="checked">
                         每周 允许的通配符[, - * / L #]
                     </label>
                 </div>
@@ -374,7 +379,7 @@
 
                 <div class="radio">
                     <label>
-                        <input type="radio" name="yearType" value="All" checked>
+                        <input type="radio" name="yearType" value="All" checked="checked">
                         每年 允许的通配符[, - * /]
                     </label>
                 </div>
@@ -394,8 +399,19 @@
                         年
                     </label>
                 </div>
-            </div>
 
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="yearType" value="Assigned">
+                        指定
+                    </label>
+                </div>
+                <div style="margin-left: 20px;">
+                    <select id="yearTypeAssigned_1" data-placeholder="选择指定的年份..."
+                            style="width:350px;" multiple>
+                    </select>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -416,7 +432,7 @@
                     <label for="result" class="sr-only">Password</label>
                     <input type="text" class="form-control" style="width: 500px;" id="result" placeholder="结果">
                 </div>
-                <button type="button" class="btn btn-default">反解析</button>
+                <button type="button" id="analysis" class="btn btn-default">反解析</button>
             </form>
 
         </div>

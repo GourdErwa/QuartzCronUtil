@@ -3,7 +3,9 @@
  */
 
 
-
+/**
+ * 可配置的数据类型内容
+ */
 var Type = {
 
     /**
@@ -13,8 +15,13 @@ var Type = {
         "name": "All",
         "keyword": "*",
         "set": function (name, value) {
-
-        },
+            var b = (value === this.keyword);
+            if (b) {
+                setChecked(name, this.name);
+            }
+            return b;
+        }
+        ,
         "get": function (name) {
             return this.keyword;
         }
@@ -27,6 +34,17 @@ var Type = {
         "keyword": "-",
         "set": function (name, value) {
 
+            var vr = value.split(this.keyword);
+            var b = vr.length === 2;
+
+            if (b) {
+                setChecked(name, this.name);
+                var id_1 = name + this.name + "_1";
+                var id_2 = name + this.name + "_2";
+                $("#" + id_1).val(vr[0]);
+                $("#" + id_2).val(vr[1]);
+            }
+            return b;
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
@@ -43,7 +61,17 @@ var Type = {
         "name": "Interval",
         "keyword": "/",
         "set": function (name, value) {
+            var vr = value.split(this.keyword);
+            var b = vr.length === 2;
 
+            if (b) {
+                setChecked(name, this.name);
+                var id_1 = name + this.name + "_1";
+                var id_2 = name + this.name + "_2";
+                $("#" + id_1).val(vr[0]);
+                $("#" + id_2).val(vr[1]);
+            }
+            return b;
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
@@ -54,45 +82,20 @@ var Type = {
         }
     },
     /**
-     * 指定
-     */
-    "Assigned": {
-        "name": "Assigned",
-        "keyword": ",",
-        "set": function (name, value) {
-
-        },
-        "get": function (name) {
-            var id_1 = name + this.name + "_1";
-            var val1 = $("#" + id_1).val();
-            return val1 || undefined;
-        }
-    },
-    /**
      * 不指定
      */
     "NotAssigned": {
         "name": "NotAssigned",
         "keyword": "?",
         "set": function (name, value) {
-
+            var b = value === this.keyword;
+            if (b) {
+                setChecked(name, this.name);
+            }
+            return b;
         },
         "get": function (name) {
-            return "?";
-        }
-    },
-    /**
-     * 每月 x 号最近的那个工作日
-     */
-    "RecentDays": {
-        "name": "RecentDays",
-        "keyword": "L",
-        "set": function (name, value) {
-
-        },
-        "get": function (name) {
-            var val = $("#" + name + this.name + "_1").val();
-            return val && (val + "L");
+            return this.keyword;
         }
     },
     /**
@@ -100,12 +103,54 @@ var Type = {
      */
     "LastDayOfMonth": {
         "name": "LastDayOfMonth",
-        "keyword": "W",
+        "keyword": "L",
         "set": function (name, value) {
+            var b = value === this.keyword;
+            if (b) {
+                setChecked(name, this.name);
+            }
 
+            return b;
         },
         "get": function (name) {
-            return "W";
+            return this.keyword;
+        }
+    },
+    /**
+     * 每月 x 号最近的那个工作日
+     */
+    "RecentDays": {
+        "name": "RecentDays",
+        "keyword": "W",
+        "set": function (name, value) {
+            var b = value[value.length - 1] === this.keyword;
+            if (b) {
+                setChecked(name, this.name);
+                $("#" + name + this.name + "_1").val(value.substring(0, value.length - 2));
+            }
+            return b;
+        },
+        "get": function (name) {
+            var id_1 = name + this.name + "_1";
+            var val = $("#" + id_1).val();
+            return val && (val + this.keyword);
+        }
+    },
+    /**
+     * 本月最后一个工作日
+     */
+    "LastDayOfMonthRecentDays": {
+        "name": "LastDayOfMonthRecentDays",
+        "keyword": "LW",
+        "set": function (name, value) {
+            var b = value === this.keyword;
+            if (b) {
+                setChecked(name, this.name);
+            }
+            return b;
+        },
+        "get": function (name) {
+            return this.keyword;
         }
     },
     /**
@@ -115,7 +160,17 @@ var Type = {
         "name": "WeeksOfWeek",
         "keyword": "#",
         "set": function (name, value) {
+            var vr = value.split(this.keyword);
+            var b = vr.length === 2;
 
+            if (b) {
+                setChecked(name, this.name);
+                var id_1 = name + this.name + "_1";
+                var id_2 = name + this.name + "_2";
+                $("#" + id_1).val(vr[0]);
+                $("#" + id_2).val(vr[1]);
+            }
+            return b;
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
@@ -132,17 +187,51 @@ var Type = {
         "name": "LastWeekOfMonth",
         "keyword": "L",
         "set": function (name, value) {
-
+            var length = value.length;
+            var b = length > 1 && value[length - 1] === this.keyword;
+            if (b) {
+                setChecked(name, this.name);
+                $("#" + name + this.name + "_1").val(value.substring(0, length - 2));
+            }
+            return b;
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
             var val = $("#" + id_1).val();
             return val && (val + this.keyword);
         }
+    },
+    /**
+     * 指定
+     */
+    "Assigned": {
+        "name": "Assigned",
+        "keyword": ",",
+        "set": function (name, value) {
+            var b = value || undefined;
+
+            if (value) {
+                value = (value.indexOf(",") === -1) ? value : value.split(",");
+
+                setChecked(name, this.name);
+                var id_1 = name + this.name + "_1";
+                var $2 = $("#" + id_1);
+                $2.val(value);
+                $2.trigger("chosen:updated");
+            }
+            return b;
+        },
+        "get": function (name) {
+            var id_1 = name + this.name + "_1";
+            var val1 = $("#" + id_1).val();
+            return val1 || undefined;
+        }
     }
 };
 
-
+/**
+ * @type {*[]} 时-年对象
+ */
 var TimeObject = [
 
     {
@@ -178,40 +267,111 @@ var TimeObject = [
     {
         radioName: "yearType",
         min: 2015,
-        max: 2299
+        max: 2100
     }
 ];
 
+var WEEK_DESCRIBE = [
+    {
+        RegExp: new RegExp("MON", "g"),
+        WeekNum: 1
+    }, {
+        RegExp: new RegExp("THU", "g"),
+        WeekNum: 2
+    }, {
+        RegExp: new RegExp("WED", "g"),
+        WeekNum: 3
+    }, {
+        RegExp: new RegExp("THU", "g"),
+        WeekNum: 4
+    }, {
+        RegExp: new RegExp("FRI", "g"),
+        WeekNum: 5
+    }, {
+        RegExp: new RegExp("SAT", "g"),
+        WeekNum: 6
+    }, {
+        RegExp: new RegExp("SUN", "g"),
+        WeekNum: 7
+    }
+];
 /**
  * @param name 单选框按钮 name
  * @returns {String}
  */
 var getChecked = function (name) {
-    return $("input[type=radio][name='" + name + "']:checked").val();
+    return $("input[name='" + name + "']:checked").val();
 };
 
 /**
  * @param name 单选框按钮 name
+ * @param value 单选框 待设置的值
  * @returns {String}
  */
 var setChecked = function (name, value) {
-    $("input[type=radio][name='" + name + "'][value='" + value + "']").attr("checked", true);
+    $("input[name='" + name + "'][value='" + value + "']").prop("checked", true);
 };
 
-
-var second, minute, hour, day, month, week, year;
 
 //init
 $(function () {
 
     var $result = $("#result");
 
+    /**
+     * 重置 cron 串
+     */
+    var reset = function () {
+        var r = '';
+        TimeObject.forEach(function (v) {
+            var radioName = v.radioName;
+            var value = Type[getChecked(radioName)].get(radioName);
+            value = value || "未配置";
+            r += value + " ";
+        });
+
+        if (r) {
+            $result.val(r.trim());
+        }
+
+        console.log("22")
+    };
+
+    /**
+     * 反解析
+     */
+    var analysis = function () {
+        var r = $result.val().trim().replace(/，/g, ',').replace(/\s+/g, ' ').toLocaleUpperCase();
+        WEEK_DESCRIBE.forEach(function (v) {
+            r = r.replace(v.RegExp, v.WeekNum);
+        });
+        $result.val(r);
+        var vr = r.split(' ');
+        if (vr.length === 6) {
+            vr.push("?");
+        }
+        vr.forEach(function (v, i) {
+            var timeObject = TimeObject[i];
+            var radioName = timeObject.radioName;
+            for (var o in  Type) {
+                var b = Type[o].set(radioName, v);
+                if (b) {
+                    break;
+                }
+            }
+        });
+    };
+
+
+    /**
+     * 下拉框填充
+     */
     TimeObject.forEach(function (v) {
         var radioName = v.radioName;
         var min = v.min;
         var max = v.max;
-        var id = radioName + Type.Assigned.name + "_1";
-        var $currChosen = $("#" + id);
+        var idAssigned = radioName + Type.Assigned.name + "_1";
+        var $currChosen = $("#" + idAssigned);
         if ($currChosen) {
             for (; min <= max; min++) {
                 var option = "<option value='" + min + "'>" + min + "</option>";
@@ -227,6 +387,10 @@ $(function () {
         }
     });
 
+
+    //绑定事件
+
+
     var $tabContentInput = $(".tab-content");
 
     $tabContentInput.find("input[type=radio]").change(function () {
@@ -236,19 +400,14 @@ $(function () {
         reset();
     });
 
-    var reset = function () {
-        var r = '';
-        TimeObject.forEach(function (v) {
-            var radioName = v.radioName;
-            var value = Type[getChecked(radioName)].get(radioName);
-            value = value || "未配置";
-            r += value + " ";
-        });
+    $result.mouseenter(function () {
+        this.select();
+    });
 
-        if (r) {
-            $result.val(r.trim());
-        }
-    };
+    $("#analysis").click(function () {
+        analysis()
+    });
 
     reset();
+
 });
