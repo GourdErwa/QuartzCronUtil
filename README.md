@@ -5,7 +5,7 @@ I just do some enhancement for QuartzCronUtil as below:
 1. make select2 to checkbox list.
 2. set the separate part of cron
 3. set limitation for numbers
-4. the last five possible runs..
+4. show the last five possible runs..
 
 [QuartzCronUtil 功能增强版](https://github.com/rickxie/QuartzCronUtil/)
 ![:home.png:](./image/home.png)
