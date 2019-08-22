@@ -215,15 +215,28 @@ var Type = {
 
                 setChecked(name, this.name);
                 var id_1 = name + this.name + "_1";
-                var $2 = $("#" + id_1);
-                $2.val(value);
-                $2.trigger("chosen:updated");
+                var $2 = $("#" + id_1 + " .cbx");
+                $2.each(function(i,item){
+                    if($.inArray(item.value, value) > -1){
+                        item.checked = true;
+                    }else{
+                        item.checked = false;
+                    }
+                })
+                // $2.val(value);
+                // $2.trigger("chosen:updated");
             }
             return b;
         },
         "get": function (name) {
             var id_1 = name + this.name + "_1";
-            var val1 = $("#" + id_1).val();
+            var $allCbx = $("#" + id_1+" .cbx:checked");
+            var id_array=new Array();  
+            $allCbx.each(function(){  
+                id_array.push($(this).val());//向数组中添加元素  
+            });  
+            var val1 = id_array.join(',');//将数组元素连接起来以构建一个字符串  
+            // var val1 = $("#" + id_1).val();
             return val1 || undefined;
         }
     }
@@ -329,7 +342,8 @@ $(function () {
         TimeObject.forEach(function (v) {
             var radioName = v.radioName;
             var value = Type[getChecked(radioName)].get(radioName);
-            value = value || "未配置";
+            $('input[name=v_'+radioName+']').val(value);
+            value = value || "?";
             r += value + " ";
         });
 
@@ -376,16 +390,30 @@ $(function () {
         var $currChosen = $("#" + idAssigned);
         if ($currChosen) {
             for (; min <= max; min++) {
-                var option = "<option value='" + min + "'>" + min + "</option>";
+                var option = "<div class='block'><input type='checkbox' class='cbx' name='"+idAssigned+"' value='" + min + "'/>" + min + "</div>";
                 $currChosen.append(option);
             }
-            $currChosen.change(function () {
+            var $cbxChosen = $(".cbx");
+            
+            $cbxChosen.change(function () {
                 reset();
             });
-            $currChosen.chosen({
-                no_results_text: "未找到此选项",
-                width: "42%"
-            });
+            // $currChosen.chosen({
+            //     no_results_text: "未找到此选项",
+            //     width: "42%"
+            // });
+
+            // for (; min <= max; min++) {
+            //     var option = "<option value='" + min + "'>" + min + "</option>";
+            //     $currChosen.append(option);
+            // }
+            // $currChosen.change(function () {
+            //     reset();
+            // });
+            // $currChosen.chosen({
+            //     no_results_text: "未找到此选项",
+            //     width: "42%"
+            // });
         }
     });
 

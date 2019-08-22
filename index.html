@@ -21,6 +21,15 @@
         height: 25px;
         width: 52px;
     }
+    .zhiding .block{
+        width:50px;
+        margin-right:10px;
+        display: inline-block;
+    }
+    input.col{
+        width:95px;
+        margin-right: 2px;
+    }
 
 </style>
 </head>
@@ -71,9 +80,9 @@
                     <label>
                         <input type="radio" name="secondType" value="Cyclic">
                         周期从
-                        <input type="number" maxlength="2" id="secondTypeCyclic_1" value="">
+                        <input type="number" maxlength="2" max="59" min="0" value="0"  id="secondTypeCyclic_1">
                         -
-                        <input type="number" id="secondTypeCyclic_2" value="">
+                        <input type="number" maxlength="2" max="59" min="1" value="1"  id="secondTypeCyclic_2">
                         秒
                     </label>
                 </div>
@@ -82,9 +91,9 @@
                     <label>
                         <input type="radio" name="secondType" value="Interval">
                         从
-                        <input type="number" id="secondTypeInterval_1" value="">
+                        <input type="number"  maxlength="2" max="59" min="0" value="0" id="secondTypeInterval_1" value="">
                         秒开始,每
-                        <input type="number" id="secondTypeInterval_2" value="">
+                        <input type="number"  maxlength="2" max="59" min="1" value="1" id="secondTypeInterval_2" value="">
                         秒执行一次
                     </label>
                 </div>
@@ -96,9 +105,10 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="secondTypeAssigned_1" data-placeholder="选择指定的秒..."
+                    <div id="secondTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="secondTypeAssigned_1" class="zhiding" data-placeholder="选择指定的秒..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
             </div>
 
@@ -114,9 +124,9 @@
                     <label>
                         <input type="radio" name="minuteType" value="Cyclic">
                         周期从
-                        <input type="number" id="minuteTypeCyclic_1" value="">
+                        <input type="number" maxlength="2" max="59" min="0" value="0" id="minuteTypeCyclic_1" value="">
                         -
-                        <input type="number" id="minuteTypeCyclic_2" value="">
+                        <input type="number" maxlength="2" max="59" min="1" value="1" id="minuteTypeCyclic_2" value="">
                         分钟
                     </label>
                 </div>
@@ -125,9 +135,9 @@
                     <label>
                         <input type="radio" name="minuteType" value="Interval">
                         从
-                        <input type="number" id="minuteTypeInterval_1" value="">
+                        <input type="number"  maxlength="2" max="59" min="0" value="0" id="minuteTypeInterval_1" value="">
                         分钟开始,每
-                        <input type="number" id="minuteTypeInterval_2" value="">
+                        <input type="number"  maxlength="2" max="59" min="1" value="1" id="minuteTypeInterval_2" value="">
                         分钟执行一次
                     </label>
                 </div>
@@ -139,9 +149,11 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="minuteTypeAssigned_1" data-placeholder="选择指定的分钟..."
+
+                        <div id="minuteTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="minuteTypeAssigned_1" class="zhiding" data-placeholder="选择指定的分钟..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
             </div>
 
@@ -158,9 +170,9 @@
                     <label>
                         <input type="radio" name="hourType" value="Cyclic">
                         周期从
-                        <input type="number" id="hourTypeCyclic_1" value="">
+                        <input type="number"  maxlength="2" max="23" min="0" value="0" id="hourTypeCyclic_1" value="">
                         -
-                        <input type="number" id="hourTypeCyclic_2" value="">
+                        <input type="number"  maxlength="2" max="23" min="1" value="1" id="hourTypeCyclic_2" value="">
                         小时
                     </label>
                 </div>
@@ -169,9 +181,9 @@
                     <label>
                         <input type="radio" name="hourType" value="Interval">
                         从
-                        <input type="number" id="hourTypeInterval_1" value="">
+                        <input type="number" maxlength="2" max="23" min="0" value="0" id="hourTypeInterval_1" value="">
                         时开始,每
-                        <input type="number" id="hourTypeInterval_2" value="">
+                        <input type="number" maxlength="2" max="23" min="1" value="1" id="hourTypeInterval_2" value="">
                         小时执行一次
                     </label>
                 </div>
@@ -183,9 +195,11 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="hourTypeAssigned_1" data-placeholder="选择指定的小时..."
+                    <!-- <select id="hourTypeAssigned_1" class="zhiding" data-placeholder="选择指定的小时..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
+
+                    <div id="hourTypeAssigned_1" class="zhiding"></div>
                 </div>
 
             </div>
@@ -204,9 +218,9 @@
                     <label>
                         <input type="radio" name="dayType" value="Cyclic">
                         周期从
-                        <input type="number" id="dayTypeCyclic_1" value="">
+                        <input type="number"  maxlength="2" max="31" min="1" value="1" id="dayTypeCyclic_1" value="">
                         -
-                        <input type="number" id="dayTypeCyclic_2" value="">
+                        <input type="number"  maxlength="2" max="31" min="2" value="2" id="dayTypeCyclic_2" value="">
                         日
                     </label>
                 </div>
@@ -215,9 +229,9 @@
                     <label>
                         <input type="radio" name="dayType" value="Interval">
                         从
-                        <input type="number" id="dayTypeInterval_1" value="">
+                        <input type="number" maxlength="2" max="31" min="1" value="1" id="dayTypeInterval_1" value="">
                         日开始,每
-                        <input type="number" id="dayTypeInterval_2" value="">
+                        <input type="number" maxlength="2" max="31" min="1" value="1" id="dayTypeInterval_2" value="">
                         日执行一次
                     </label>
                 </div>
@@ -229,9 +243,10 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="dayTypeAssigned_1" data-placeholder="选择指定的日..."
+                        <div id="dayTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="dayTypeAssigned_1" class="zhiding" data-placeholder="选择指定的日..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
 
                 <div class="radio">
@@ -276,9 +291,9 @@
                     <label>
                         <input type="radio" name="monthType" value="Cyclic">
                         周期从
-                        <input type="number" id="monthTypeCyclic_1" value="">
+                        <input type="number" maxlength="2" max="12" min="1" value="1" id="monthTypeCyclic_1" value="">
                         -
-                        <input type="number" id="monthTypeCyclic_2" value="">
+                        <input type="number" maxlength="2" max="12" min="1" value="2" id="monthTypeCyclic_2" value="">
                         月
                     </label>
                 </div>
@@ -287,9 +302,9 @@
                     <label>
                         <input type="radio" name="monthType" value="Interval">
                         从
-                        <input type="number" id="monthTypeInterval_1" value="">
+                        <input type="number" maxlength="2" max="12" min="1" value="1" id="monthTypeInterval_1" value="">
                         月开始,每
-                        <input type="number" id="monthTypeInterval_2" value="">
+                        <input type="number" maxlength="2" max="12" min="1" value="1" id="monthTypeInterval_2" value="">
                         月执行一次
                     </label>
                 </div>
@@ -301,9 +316,11 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="monthTypeAssigned_1" data-placeholder="选择指定的月..."
+
+                        <div id="monthTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="monthTypeAssigned_1" class="zhiding" data-placeholder="选择指定的月..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
 
                 <div class="radio">
@@ -327,9 +344,9 @@
                     <label>
                         <input type="radio" name="weekType" value="Cyclic">
                         周期从
-                        <input type="number" id="weekTypeCyclic_1" value="">
+                        <input type="number" maxlength="2" max="7" min="1" value="1" id="weekTypeCyclic_1" value="">
                         -
-                        <input type="number" id="weekTypeCyclic_2" value="">
+                        <input type="number" maxlength="2" max="7" min="1" value="1" id="weekTypeCyclic_2" value="">
                         周
                     </label>
                 </div>
@@ -338,9 +355,9 @@
                     <label>
                         <input type="radio" name="weekType" value="WeeksOfWeek">
                         第
-                        <input type="number" id="weekTypeWeeksOfWeek_1" value="">
+                        <input type="number" maxlength="2" max="7" min="1" value="1" id="weekTypeWeeksOfWeek_1" value="">
                         周 的星期
-                        <input type="number" id="weekTypeWeeksOfWeek_2" value="">
+                        <input type="number" maxlength="2" max="7" min="1" value="1" id="weekTypeWeeksOfWeek_2" value="">
 
                     </label>
                 </div>
@@ -352,9 +369,10 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="weekTypeAssigned_1" data-placeholder="选择指定的周..."
+                    <div id="weekTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="weekTypeAssigned_1" class="zhiding" data-placeholder="选择指定的周..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
 
                 <div class="radio">
@@ -407,9 +425,10 @@
                     </label>
                 </div>
                 <div style="margin-left: 20px;">
-                    <select id="yearTypeAssigned_1" data-placeholder="选择指定的年份..."
+                        <div id="yearTypeAssigned_1" class="zhiding"></div>
+                    <!-- <select id="yearTypeAssigned_1" class="zhiding" data-placeholder="选择指定的年份..."
                             style="width:350px;" multiple>
-                    </select>
+                    </select> -->
                 </div>
             </div>
 
@@ -429,11 +448,82 @@
                     <label class="sr-only">结果</label>
                     <p class="form-control-static">结果</p>
                 </div>-->
+
                 <div class="form-group">
-                    <label for="result" class="sr-only">Password</label>
-                    <input type="text" class="form-control" style="width: 500px;" id="result" placeholder="结果">
-                </div>
-                <button type="button" id="analysis" class="btn btn-default">反解析</button>
+                        <label for="result" class="sr-only">Password</label>
+                        <table style="height: 100px;">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td align="center">
+                                        秒
+                                    </td>
+                                    <td align="center">
+                                        分钟
+                                    </td>
+                                    <td align="center">
+                                        小时
+                                    </td>
+                                    <td align="center">
+                                        日
+                                    </td>
+                                    <td align="center">
+                                        月
+                                        <br>
+                                    </td>
+                                    <td align="center">
+                                        星期
+                                    </td>
+                                    <td align="center">
+                                        年
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        表达式字段:
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_secondType" class="col" value="*" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_minuteType" class="col" value="*" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_hourType" class="col" value="*" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_dayType" class="col" value="*" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_monthType" class="col" value="*" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled  name="v_weekType" class="col" value="?" readonly="readonly">
+                                    </td>
+                                    <td>
+                                        <input type="text" disabled name="v_yearType" class="col" readonly="readonly">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Cron 表达式:</td>
+                                    <td colspan="6">
+                                        <input type="text" name="cron" id="result" style="width: 100%;">
+                                    </td>
+                                    <td>
+                                        <input type="button" value="反解析" id="analysis">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">最近5次运行时间:</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8" id="runTime">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div> 
             </form>
             <div style="text-align: right;margin-top: 15px;">
                 <label><a href="https://github.com/GourdErwa/QuartzCronUtil/archive/master.zip" target="_blank">Download</a></label>
